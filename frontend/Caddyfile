@@ -1,0 +1,4 @@
+poltto.azurewebsites.net
+
+root * /usr/share/caddy
+file_server

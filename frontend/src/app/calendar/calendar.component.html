@@ -1,0 +1,30 @@
+<div class="calendar-container flex-1 h-full flex flex-col">
+  <div class="calendar-header flex-shrink">
+
+  </div>
+  <div class="calendar-content flex flex-1">
+    <table class="flex-1 table-auto border-collapse border">
+      <thead>
+        <tr>
+          @for(header of calendarDateProviderService.computedState.headers(); track header) {
+            <th>{{ header | date: 'EEEE'  }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for(week of calendarDateProviderService.computedState.dates(); track week) {
+          <tr>
+            @for(day of week; track day) {
+              <td class="align-middle">
+                <calendar-day [date]="day"></calendar-day>
+              </td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="calendar-footer">
+
+  </div>
+</div>
