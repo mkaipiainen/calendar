@@ -2,7 +2,7 @@ services:
   api:
     build:
       context: ./api
-      dockerfile: Dockerfile
+      dockerfile: api/Dockerfile.dev
     volumes:
       - ./api:/app
       - /app/obj/
@@ -36,3 +36,5 @@ services:
 
 networks:
   app-network:
+
+
