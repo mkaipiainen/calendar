@@ -26,7 +26,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./server
+          context: ./api
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/calendar-server:${{ github.sha }}
-          file: ./server/Dockerfile
+          tags: ghcr.io/${{ github.repository_owner }}/calendar-api:${{ github.sha }}
+          file: ./api/Dockerfile
