@@ -13,7 +13,7 @@ services:
     networks:
       - app-network
   frontend:
-    image: ghcr.io/mkaipiainen/calendar-frontend:339988584fa586f2dc2487fbed275030d6eccfab
+    image: ghcr.io/mkaipiainen/calendar-frontend:aeb08432ac234a51dc6dc6cd521b3940ba56fb48
     networks:
       - app-network
     ports:

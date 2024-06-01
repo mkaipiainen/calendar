@@ -10,5 +10,8 @@ RUN pnpm run build
 
 FROM caddy:2.8.1-alpine as runner
 COPY Caddyfile /etc/caddy/Caddyfile
-COPY --from=builder /app/dist /usr/share/caddy
+# Copy the built application to the web root
+COPY --from=builder /app/dist /srv
+
+# Run Caddy
 CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]
