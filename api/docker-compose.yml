@@ -1,0 +1,25 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8051:80"
+      - "8081:8081"
+      - "5000:5000"
+      - "5001:5001"
+      - "2222:2222"
+      - "8052:443"
+    volumes:
+      - .:/app
+      - /app/obj/
+      - /app/bin/
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - app-network
+        
+        
+networks:
+  app-network:
