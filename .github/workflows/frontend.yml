@@ -2,6 +2,7 @@ name: Build and Push Docker Image
 
 env:
   AZURE_WEBAPP_NAME: metm
+  AWS_REGION: 'eu-north-1'
 
 permissions:
   contents: 'read'
