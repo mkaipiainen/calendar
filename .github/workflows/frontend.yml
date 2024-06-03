@@ -44,18 +44,14 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         with:
           context: ./frontend
           push: true
-          tags: $ECR_REGISTRY/calendar-frontend:latest
+          tags: ${{ steps.login-ecr.outputs.registry }}/calendar-frontend:latest
           file: ./frontend/Dockerfile
 
       - name: Deploy to AWS ECR
         id: publish-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker push $ECR_REGISTRY/calendar-frontend:latest
-          echo "image=$ECR_REGISTRY/calendar-frontend:latest" >> $GITHUB_OUTPUT
+          docker push ${{ steps.login-ecr.outputs.registry }}/calendar-frontend:latest
+          echo "image=${{ steps.login-ecr.outputs.registry }}/calendar-frontend:latest" >> $GITHUB_OUTPUT
