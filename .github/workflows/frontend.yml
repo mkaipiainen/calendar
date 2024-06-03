@@ -47,11 +47,11 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: ${{ steps.login-ecr.outputs.registry }}/calendar-frontend:latest
+          tags: ${{ steps.login-ecr.outputs.registry }}/poltto/calendar-frontend:latest
           file: ./frontend/Dockerfile
 
       - name: Deploy to AWS ECR
         id: publish-image
         run: |
-          docker push ${{ steps.login-ecr.outputs.registry }}/calendar-frontend:latest
-          echo "image=${{ steps.login-ecr.outputs.registry }}/calendar-frontend:latest" >> $GITHUB_OUTPUT
+          docker push ${{ steps.login-ecr.outputs.registry }}/poltto/calendar-frontend:latest
+          echo "image=${{ steps.login-ecr.outputs.registry }}/poltto/calendar-frontend:latest" >> $GITHUB_OUTPUT
