@@ -61,7 +61,7 @@ jobs:
       - name: Lowercase the repo name
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
-      - name: Deploy to Azure Web App
+      - name: Deploy to AWS ECR
         id: publish-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
