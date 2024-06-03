@@ -1,29 +1,18 @@
 services:
   api:
-    build:
-      context: ./api
-      dockerfile: api/Dockerfile.dev
-    volumes:
-      - ./api:/app
-      - /app/obj/
-      - /app/bin/
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
+    image: ghcr.io/mkaipiainen/calendar-api:latest
     networks:
       - app-network
   frontend:
-    image: ghcr.io/mkaipiainen/calendar-frontend:aeb08432ac234a51dc6dc6cd521b3940ba56fb48
+    image: ghcr.io/mkaipiainen/calendar-frontend:latest
     networks:
       - app-network
-    ports:
-      - "8050:80"
   caddy:
     image: caddy:2
     container_name: oad.caddy.dev
     ports:
       - "80:80"
-      - "4200:4200"
+      - "443:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
     networks:

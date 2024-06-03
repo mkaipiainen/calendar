@@ -1,6 +1,6 @@
 name: Build and Push ASP.NET Docker Image
 env:
-  AZURE_WEBAPP_NAME: poltto
+  AZURE_WEBAPP_NAME: metm
 
 permissions:
   contents: 'read'
@@ -34,7 +34,7 @@ jobs:
         with:
           context: ./api
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/calendar-api:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository_owner }}/calendar-api:latest
           file: ./api/Dockerfile
 
   deploy:
@@ -56,4 +56,4 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          images: 'ghcr.io/${{ github.repository_owner }}/calendar-api:${{ github.sha }}'
+          images: 'ghcr.io/${{ github.repository_owner }}/calendar-api:latest'

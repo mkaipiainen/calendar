@@ -1,7 +1,7 @@
 name: Build and Push Docker Image
 
 env:
-  AZURE_WEBAPP_NAME: poltto
+  AZURE_WEBAPP_NAME: metm
 
 permissions:
   contents: 'read'
@@ -35,7 +35,7 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/calendar-frontend:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository_owner }}/calendar-frontend:latest
           file: ./frontend/Dockerfile
   deploy:
     runs-on: ubuntu-latest
@@ -47,13 +47,24 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
+
       - name: Lowercase the repo name
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@85270a1854658d167ab239bce43949edb336fa7c
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          images: 'ghcr.io/${{ github.repository_owner }}/calendar-frontend:${{ github.sha }}'
+        id: publish-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker push $ECR_REGISTRY/calendar-frontend:latest
+          echo "image=$ECR_REGISTRY/calendar-frontend:latest" >> $GITHUB_OUTPUT
