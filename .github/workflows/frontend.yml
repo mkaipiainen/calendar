@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 env:
   AZURE_WEBAPP_NAME: metm
   AWS_REGION: 'eu-north-1'
-  ECS_TASK_DEFINITION: '../../task-definition.json'
+  ECS_TASK_DEFINITION: 'task-definition.json'
   ECS_CONTAINER_NAME: 'web-container'
   ECS_SERVICE: 'arn:aws:ecs:eu-north-1:211125760731:service/main-cluster/web-service'
   ECS_CLUSTER: 'arn:aws:ecs:eu-north-1:211125760731:cluster/main-cluster'
