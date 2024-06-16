@@ -3,6 +3,10 @@ name: Build and Push Docker Image
 env:
   AZURE_WEBAPP_NAME: metm
   AWS_REGION: 'eu-north-1'
+  ECS_TASK_DEFINITION: 'arn:aws:ecs:eu-north-1:211125760731:task/main-cluster/48a1bd6ade5444eb91f29b561de2a7c4'
+  ECS_CONTAINER_NAME: 'web-container'
+  ECS_SERVICE: 'arn:aws:ecs:eu-north-1:211125760731:service/main-cluster/web-service'
+  ECS_CLUSTER: 'arn:aws:ecs:eu-north-1:211125760731:cluster/main-cluster'
 
 permissions:
   contents: 'read'
@@ -58,3 +62,19 @@ jobs:
         run: |
           docker push ${{ steps.login-ecr.outputs.registry }}/poltto/calendar-frontend:latest
           echo "image=${{ steps.login-ecr.outputs.registry }}/poltto/calendar-frontend:latest" >> $GITHUB_OUTPUT
+
+      - name: Replace image in ECS task definition
+        id: replace-image
+        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
+        with:
+          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
+        with:
+          task-definition: ${{ steps.replace-image.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
