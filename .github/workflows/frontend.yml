@@ -73,7 +73,7 @@ jobs:
 
       - name: Deploy to DigitalOcean Droplet
         run: |
-          doctl compute ssh 146.190.206.60 --ssh-key-path ~/.ssh/id_rsa --ssh-user root -- << EOF
+          doctl compute ssh www-1 --ssh-key-path ~/.ssh/id_rsa --ssh-user root -- << EOF
           docker network create app-default
           
           docker pull ghcr.io/${{ github.repository_owner }}/calendar-frontend:latest
