@@ -1,7 +1,7 @@
 name: Build and Push Docker Image
 
 env:
-  AZURE_WEBAPP_NAME: metm
+  DROPLET_IP: ""
 
 permissions:
   contents: 'read'
@@ -64,14 +64,14 @@ jobs:
           file: ./revproxy/Dockerfile
 
       - name: Get and store Droplet IP
-        run: IP=$(doctl compute droplet list --format PublicIPv4 --no-header www-1)
+        run: echo "DROPLET_IP=$(doctl compute droplet list --format PublicIPv4 --no-header www-1)" >> $GITHUB_ENV
 
       - name: Create SSH key file
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan ${{IP}} >> ~/.ssh/known_hosts
+          ssh-keyscan ${{DROPLET_IP}} >> ~/.ssh/known_hosts
 
 
       - name: Deploy to DigitalOcean Droplet
