@@ -85,7 +85,7 @@ jobs:
           docker run -d --name calendar-api --network app-default ghcr.io/${{ github.repository_owner }}/calendar-api:latest 
           
           docker pull ghcr.io/${{ github.repository_owner }}/calendar-revproxy:latest
-          docker run -d --name calendar-revproxy -p 80:80 443:443 --network app-default ghcr.io/${{ github.repository_owner }}/calendar-revproxy:latest 
+          docker run -d --name calendar-revproxy -p 80:80 -p 443:443 --network app-default ghcr.io/${{ github.repository_owner }}/calendar-revproxy:latest 
           EOF
         env:
           DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
