@@ -6,4 +6,4 @@ FROM caddy:2-alpine as runner
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
 COPY Caddyfile /etc/caddy/Caddyfile
-ENV CLOUDFLARE_API_KEY=${CLOUDFLARE_API_KEY}
+ENV CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
