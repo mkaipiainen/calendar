@@ -65,6 +65,7 @@ jobs:
 
       - name: Create SSH key file
         run: |
+          mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan 146.190.206.60 >> ~/.ssh/known_hosts  # Replace <droplet-ip> with your droplet's IP address
