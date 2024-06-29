@@ -43,6 +43,9 @@ jobs:
           tags: ${{ secrets.DIGITAL_OCEAN_REGISTRY }}/calendar-frontend:latest
           file: ./frontend/Dockerfile
 
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 1200
+
       - name: Build and push backend image
         uses: docker/build-push-action@v5
         with:
@@ -50,6 +53,9 @@ jobs:
           push: true
           tags: ${{ secrets.DIGITAL_OCEAN_REGISTRY }}/calendar-api:latest
           file: ./api/Dockerfile
+
+      - name: Log in to DigitalOcean Container Registry with short-lived credentials
+        run: doctl registry login --expiry-seconds 1200
 
       - name: Build and push revproxy image
         uses: docker/build-push-action@v5
