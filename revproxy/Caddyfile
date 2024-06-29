@@ -1,4 +1,9 @@
 storieslikegrapes.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_API_KEY}
+        resolvers 1.1.1.1
+    }
+
     reverse_proxy /api* http://api:80
     reverse_proxy http://frontend:80
 }
