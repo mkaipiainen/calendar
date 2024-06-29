@@ -1,4 +1,4 @@
-metm.azurewebsites.net {
+storieslikegrapes.com {
     reverse_proxy /api* http://api:80
     reverse_proxy http://frontend:80
 }
