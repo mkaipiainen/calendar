@@ -8,7 +8,7 @@ COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 # Use Docker secrets directly without modifying the .env file
 COPY .env /etc/caddy/.env
 COPY Caddyfile /etc/caddy/Caddyfile
-COPY entrypoint.sh /usr/bin/entrypoint.sh
-RUN chmod +x /usr/bin/entrypoint.sh
+RUN --mount=type=secret,id=CLOUDFLARE_API_KEY \
+    sed -i "s/MY_SECRET_1=/MY_SECRET_1=$(cat /run/secrets/CLOUDFLARE_API_KEY)/" .env
 
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+
