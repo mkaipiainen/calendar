@@ -10,8 +10,5 @@ if [ -f /etc/caddy/.env ]; then
     export $(grep -v '^#' /etc/caddy/.env | xargs)
 fi
 
-# Replace placeholder with actual secret in .env file
-sed -i "s/CLOUDFLARE_API_KEY=/CLOUDFLARE_API_KEY=$CLOUDFLARE_API_KEY/" /etc/caddy/.env
-
-# Start Caddy
+# Start Caddy with the environment variable for the API key
 caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
