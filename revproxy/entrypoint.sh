@@ -23,4 +23,4 @@ echo "Starting Caddy with the following environment variables:"
 env
 
 # Start Caddy
-caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+caddy run --config /etc/caddy/Caddyfile --adapter caddyfile --envfile /etc/caddy/.env
