@@ -9,6 +9,6 @@ COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 COPY .env /etc/caddy/.env
 COPY Caddyfile /etc/caddy/Caddyfile
 RUN --mount=type=secret,id=CLOUDFLARE_API_KEY \
-    sed -i "s/MY_SECRET_1=/MY_SECRET_1=$(cat /run/secrets/CLOUDFLARE_API_KEY)/" .env
+    sed -i "s/MY_SECRET_1=/MY_SECRET_1=$(cat /run/secrets/CLOUDFLARE_API_KEY)/" /etc/caddy/.env
 
 
