@@ -59,7 +59,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/calendar-revproxy:latest
           file: ./revproxy/Dockerfile
-          secrets: |
+          build-args: |
             CLOUDFLARE_API_KEY=${{ secrets.CLOUDFLARE_API_KEY }}
       - name: Debug environment variables
         run: printenv
