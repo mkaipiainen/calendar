@@ -1,9 +1,12 @@
 FROM golang:1.22
 
 WORKDIR /app
+ENV PROJECT_DIR=/app \
+    GO111MODULE=on \
+    CGO_ENABLED=0
 
-RUN go install github.com/air-verse/air@latest
-COPY go.mod go.sum ./
+COPY . .
+RUN go get github.com/githubnemo/CompileDaemon
+RUN go install github.com/githubnemo/CompileDaemon
 RUN go mod download
-
-CMD ["air", "-c", "air.toml"]
+ENTRYPOINT CompileDaemon -polling -build="go build -o api" -command="./api"
