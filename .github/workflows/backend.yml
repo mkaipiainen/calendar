@@ -67,7 +67,7 @@ jobs:
           docker network inspect app-default >/dev/null 2>&1 || docker network create --driver bridge app-default
           docker rm -f calendar-api
           docker pull ghcr.io/${{ github.repository_owner }}/calendar-api:latest
-          docker run -d --name calendar-api --network app-default ghcr.io/${{ github.repository_owner }}/calendar-api:latest 
+          docker run -p 8051:80 -d --name calendar-api --network app-default ghcr.io/${{ github.repository_owner }}/calendar-api:latest 
           EOF
         env:
           DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
