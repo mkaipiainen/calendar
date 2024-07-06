@@ -1,6 +1,0 @@
-@api_HostAddress = http://localhost:8051/api
-
-GET {{api_HostAddress}}/Calendar/
-Accept: application/json
-
-###

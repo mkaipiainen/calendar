@@ -1,11 +1,9 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM golang:1.22
+
 WORKDIR /app
 
-# Copy csproj and restore as distinct layers
-COPY . .
-RUN dotnet restore
-# Install the dotnet watch tool
-RUN dotnet tool install --global dotnet-watch
+RUN go install github.com/air-verse/air@latest
+COPY go.mod go.sum ./
+RUN go mod download
 
-# Start the app
-CMD ["dotnet", "watch", "run", "--no-launch-profile"]
+CMD ["air", "-c", "air.toml"]

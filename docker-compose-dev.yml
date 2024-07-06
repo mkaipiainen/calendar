@@ -2,14 +2,11 @@ services:
   api:
     build:
       context: ./api
-      dockerfile: api/Dockerfile.dev
+      dockerfile: Dockerfile.dev
     volumes:
       - ./api:/app
-      - /app/obj/
-      - /app/bin/
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
+      - PORT=80
     networks:
       - app-network
   frontend:
@@ -24,7 +21,7 @@ services:
       - app-network
   caddy:
     image: caddy:2
-    container_name: oad.caddy.dev
+    container_name: caddy.dev
     ports:
       - "80:80"
       - "4200:4200"

@@ -1,5 +1,7 @@
 http://localhost:4200 {
-    reverse_proxy /api* http://api:80
+    handle_path /api/* {
+        reverse_proxy http://api:80
+    }
     reverse_proxy /swagger* http://api:80
     reverse_proxy http://frontend:80
 }

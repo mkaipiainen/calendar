@@ -1,0 +1,6 @@
+root = "."
+tmp_dir = "tmp"
+cmd = "go build -o ./tmp/main ."
+poll = true
+poll_interval = 500
+include_ext = ["go"]
