@@ -61,7 +61,8 @@ jobs:
           file: ./revproxy/Dockerfile
           secrets: |
             CLOUDFLARE_API_KEY=${{ secrets.CLOUDFLARE_API_KEY }}
-
+      - name: Debug environment variables
+        run: printenv
       - name: Get and store Droplet IP
         run: echo "DROPLET_IP=$(doctl compute droplet list --format PublicIPv4 --no-header www-1)" >> $GITHUB_ENV
 
