@@ -1,5 +1,4 @@
 storieslikegrapes.com {
-  root * /srv
-  file_server
+  respond "Hello, world!"
 }
 
