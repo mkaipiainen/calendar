@@ -8,7 +8,7 @@ COPY entrypoint.sh /usr/bin/entrypoint.sh
 # Use Docker secrets directly without modifying the .env file
 COPY .env /etc/caddy/.env
 COPY Caddyfile /etc/caddy/Caddyfile
-
+RUN chmod +x /usr/bin/entrypoint.sh
 
 
 
