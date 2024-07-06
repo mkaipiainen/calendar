@@ -9,8 +9,8 @@ storieslikegrapes.com {
         resolvers 1.1.1.1
     }
     handle_path /api/* {
-        reverse_proxy http:api:80
+        reverse_proxy http:calendar-api:80
     }
-    reverse_proxy http:frontend:80
+    reverse_proxy http:calendar-frontend:80
 }
 
