@@ -11,4 +11,4 @@ COPY tsconfig.json .
 COPY tsconfig.app.json .
 COPY tailwind.config.js .
 COPY angular.json .
-CMD ["node_modules/.bin/ng", "serve", "--host=0.0.0.0", "--disable-host-check", "--port=80", "--poll=1000"]
+CMD ["node_modules/.bin/ng", "serve", "--host=0.0.0.0", "--disable-host-check", "--port=80", "--poll=1000", "--configuration=development"]

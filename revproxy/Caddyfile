@@ -8,6 +8,9 @@ storieslikegrapes.com {
         dns cloudflare {env.CLOUDFLARE_API_KEY}
         resolvers 1.1.1.1
     }
-    respond "Hello, world!"
+    handle_path /api/* {
+        reverse_proxy http:api:80
+    }
+    reverse_proxy http:frontend:80
 }
 
