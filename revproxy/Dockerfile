@@ -15,3 +15,5 @@ RUN --mount=type=secret,id=CLOUDFLARE_API_KEY \
 
 
 
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]
