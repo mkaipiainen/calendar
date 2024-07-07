@@ -8,9 +8,6 @@ storieslikegrapes.com {
         dns cloudflare {env.CLOUDFLARE_API_KEY}
         resolvers 1.1.1.1
     }
-    handle_path /api/* {
-        reverse_proxy http:calendar-api:8051
-    }
-    reverse_proxy http:calendar-frontend:8050
+    respond "Hello!"
 }
 
