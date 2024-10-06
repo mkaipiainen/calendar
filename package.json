@@ -1,0 +1,23 @@
+{
+  "name": "calendar",
+  "version": "0.0.1",
+  "description": "Calendar",
+  "productName": "Calendar",
+  "author": "Poltto <martti.kaipiainen@gmail.com>",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@9.7.0",
+  "scripts": {
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier --write src/"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-playwright": "^1.6.2",
+    "eslint-plugin-vue": "^9.23.0",
+    "prettier": "^3.2.5",
+    "typescript-eslint": "^8.7.0"
+  }
+}

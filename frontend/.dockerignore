@@ -1,2 +1,4 @@
 node_modules
-.angular
+.quasar
+e2e
+spec.ts

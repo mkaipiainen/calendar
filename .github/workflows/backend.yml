@@ -40,15 +40,16 @@ jobs:
 
       - name: Build and push backend image
         uses: docker/build-push-action@v5
-        on:
-          push:
-            paths:
-              - api/**
         with:
           context: ./api
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/calendar-api:latest
           file: ./api/Dockerfile
+          build-args: |
+            AUTH0_DOMAIN=${{ secrets.CLOUDFLARE_API_KEY }} |
+            AUTH0_CLIENT_ID=${{ secrets.AUTH0_CLIENT_ID }} |
+            AUTH0_CLIENT_SECRET=${{ secrets.AUTH0_CLIENT_SECRET }} |
+            AUTH0_AUDIENCE=${{ secrets.AUTH0_AUDIENCE }}
 
       - name: Get and store Droplet IP
         run: echo "DROPLET_IP=$(doctl compute droplet list --format PublicIPv4 --no-header www-1)" >> $GITHUB_ENV

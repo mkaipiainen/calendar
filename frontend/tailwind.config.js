@@ -3,9 +3,10 @@ module.exports = {
   content: [
     "./src/**/*.{html,ts}",
   ],
+  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('tailwindcss-primeui')],
 }
 
