@@ -1,7 +1,7 @@
 FROM node:22.2.0 as builder
 
 WORKDIR /app
-RUN npm install -g pnpm@9.1.2
+RUN npm install -g pnpm@9.7.0
 
 COPY . .
 RUN pnpm install
