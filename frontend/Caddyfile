@@ -1,3 +1,7 @@
-*:80 {
+{
+  debug
+}
+
+storieslikegrapes.com {
   respond "Hello, world!"
 }
