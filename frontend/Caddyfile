@@ -1,7 +1,5 @@
-{
-  debug
-}
-
 :80 {
-  respond "Hello, world!"
+  root * /srv
+  try_files {path} /index.html
+  file_server
 }
