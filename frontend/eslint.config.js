@@ -8,16 +8,7 @@ export default tseslint.config(
     files: ['src/**/*.{vue,ts}'],
     rules: {
       '@typescript-eslint/no-require-imports': 'off',
-    },
-  },
-  {
-    languageOptions: {
-      parserOptions: {
-        parser: tseslint.parser,
-        project: './frontend/tsconfig.app.json',
-        extraFileExtensions: ['.vue', '.ts'],
-        sourceType: 'module',
-      },
+      'vue/html-self-closing': 'off',
     },
   },
 );
