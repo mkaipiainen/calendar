@@ -3,3 +3,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+  .dialog-container {
+    @apply absolute z-50 flex flex-col items-center justify-center flex-shrink p-4 pointer-events-auto;
+    width: min(100vw, 400px);
+    height: min(100vh, 300px);
+  }
+
+  .dialog-header {
+    @apply bg-secondary text-bg-secondary w-full p-4;
+  }
+
+  .dialog-content {
+    @apply bg-tertiary text-bg-tertiary w-full p-4 flex-grow;
+  }
+
+  .dialog-actions {
+    @apply bg-secondary text-bg-tertiary flex-shrink w-full p-4 flex justify-end items-center;
+
+    Button {
+      @apply mr-4;
+
+      &:last-child {
+        @apply mr-0
+      }
+    }
+
+
+  }
+}
