@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="flex-grow">PlantMinder</div>
+  <div class="landing-content flex justify-center items-center"></div>
 </template>
 
 <style scoped></style>
